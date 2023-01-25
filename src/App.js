@@ -1,9 +1,8 @@
-import './App.css';
-import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
-import Todos from './Components/Todos';
 import React, { useState, useEffect } from 'react';
 import AddTodo from './Components/AddTodo';
+import Table from './Components/Table';
+import Navbar from './Components/Navbar';
 
 function App() {
   let initTodo;
@@ -15,18 +14,16 @@ function App() {
   }
 
   function onDelete(todo) {
-    console.log("I am onDelete", todo);
     setTodos(todos.filter((t) => {
       return t !== todo;
     }))
     localStorage.setItem("todos", JSON.stringify(todos));
   }
 
-  function addTodo(title, desc) {
-    console.log("Adding", title, desc);
+  function addTodo(title, desc, owner, vendor) {
     let sno;
     if (todos.length === 0) {
-      sno = 0;
+      sno = 1;
     }
     else {
       sno = todos[todos.length - 1].sno + 1;
@@ -34,10 +31,11 @@ function App() {
     const myTodo = {
       sno: sno,
       title: title,
-      desc: desc
+      desc: desc,
+      owner: owner,
+      vendor: vendor
     }
     setTodos([...todos, myTodo]);
-    console.log(myTodo);
   }
 
   const [todos, setTodos] = useState(initTodo);
@@ -48,9 +46,11 @@ function App() {
 
   return (
     <>
-      <Navbar title="TODOS-LIST" />
-      <AddTodo addTodo={addTodo} />
-      <Todos todos={todos} onDelete={onDelete} />
+      <Navbar />
+      <div className='container'>
+        <AddTodo addTodo={addTodo} />
+        <Table todos={todos} onDelete={onDelete} />
+      </div>
       <Footer />
     </>
   );
