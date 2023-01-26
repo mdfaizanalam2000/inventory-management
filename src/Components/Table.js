@@ -14,12 +14,13 @@ export default function Heading(props) {
                                 <th scope="col">Date of Service</th>
                                 <th scope="col">Owner Name</th>
                                 <th scope="col">Vendor Name</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Actions</th>
+                                <th scope="col">#</th>
                             </tr>
                         </thead>
                         <tbody>
                             {props.todos.map((todo) => {
-                                return <Todo todo={todo} key={todo.sno} onDelete={props.onDelete} />
+                                return <Todo todo={todo} key={todo.sno} onDelete={props.onDelete} onEdit={props.onEdit} />
                             })}
                         </tbody>
                     </table>

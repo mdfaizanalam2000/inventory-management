@@ -9,7 +9,12 @@ export default function Todo(props) {
                 <td>{props.todo.desc}</td>
                 <td>{props.todo.owner}</td>
                 <td>{props.todo.vendor}</td>
-                <td><button className='btn btn-danger' onClick={() => { props.onDelete(props.todo) }}>Delete</button></td>
+                <td>
+                    <button className='btn btn-warning' onClick={() => { props.onEdit(props.todo) }}>Edit</button>
+                </td>
+                <td>
+                    <button className='btn btn-danger' onClick={() => { props.onDelete(props.todo) }}>Delete</button>
+                </td>
             </tr>
         </>
     )
